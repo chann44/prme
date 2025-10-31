@@ -1,0 +1,16 @@
+typescript:
+  web_app:
+    - name: Next.js + Prisma + PostgreSQL
+      repo: https://github.com/user/ts-web-starter
+  cli:
+    - name: Node CLI
+      repo: https://github.com/user/node-cli-starter
+
+go:
+  web_app:
+    - name: Fiber + GORM
+      repo: https://github.com/user/go-fiber-starter
+  cli:
+    - name: Cobra CLI
+      repo: https://github.com/user/go-cobra-starter
+

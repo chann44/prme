@@ -1,5 +1,3 @@
-<div align="center">
-
 ```
  ██████╗ ██████╗ ███╗   ███╗███████╗
  ██╔══██╗██╔══██╗████╗ ████║██╔════╝
@@ -11,28 +9,18 @@
 
 # 🚀 Prme
 
-<div align="center">
+**A lightning-fast CLI tool to bootstrap your next project with curated starter templates**
 
 ![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=for-the-badge&logo=go)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/chann44/prme?style=for-the-badge)](https://goreportcard.com/report/github.com/chann44/prme)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](CONTRIBUTING.md)
 
-**A lightning-fast CLI tool to bootstrap your next project with curated starter templates**
-
-[Features](#-features) •
-[Installation](#-installation) •
-[Usage](#-usage) •
-[Templates](#-available-templates) •
-[Contributing](#-contributing)
-
-</div>
-
 ---
 
 ## 📖 Overview
 
-Prime is an interactive terminal-based project generator that helps developers quickly start new projects with pre-configured templates. Choose your language, select your project type, pick a template, and you're ready to code!
+Prme is an interactive terminal-based project generator that helps developers quickly start new projects with pre-configured templates. Choose your language, select your project type, pick a template, and you're ready to code!
 
 Built with [Bubble Tea](https://github.com/charmbracelet/bubbletea) for a delightful terminal UI experience.
 
@@ -199,11 +187,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<div align="center">
-
 **If you find this project helpful, please consider giving it a ⭐!**
 
 Made with ❤️ by [chann44](https://github.com/chann44)
-
-</div>
-

@@ -99,13 +99,13 @@ func (m modal) View() string {
 			selectedStyle.Render(m.selectedAppType))))
 		s.WriteString("\n\n")
 
-		for i, stack := range m.stacks {
+		for i, stack := range m.templates {
 			cursor := " "
 			if i == m.stackCursor {
 				cursor = "▸"
-				s.WriteString(cursor + " " + highlightStyle.Render(stack) + "\n")
+				s.WriteString(cursor + " " + highlightStyle.Render(stack.Name) + "\n")
 			} else {
-				s.WriteString(cursor + " " + normalStyle.Render(stack) + "\n")
+				s.WriteString(cursor + " " + normalStyle.Render(stack.Name) + "\n")
 			}
 		}
 

@@ -2,9 +2,27 @@ typescript:
   web_app:
     - name: Next.js + Prisma + PostgreSQL
       repo: https://github.com/user/ts-web-starter
+    - name: Next.js + Prisma + MySQL
+      repo: https://github.com/user/ts-web-starter
+    - name: Next.js + Prisma + MongoDB
+      repo: https://github.com/user/ts-web-starter
   cli:
-    - name: Node CLI
-      repo: https://github.com/user/node-cli-starter
+    - name: TypeScript CLI
+      repo: https://github.com/user/ts-cli-starter
+
+python:
+  web_app:
+    - name: FastAPI + SQLAlchemy
+      repo: https://github.com/user/py-fastapi-starter
+    - name: FastAPI + SQLAlchemy + PostgreSQL
+      repo: https://github.com/user/py-fastapi-starter
+    - name: FastAPI + SQLAlchemy + MySQL
+      repo: https://github.com/user/py-fastapi-starter
+    - name: FastAPI + SQLAlchemy + MongoDB
+      repo: https://github.com/user/py-fastapi-starter
+  cli:
+    - name: Python CLI
+      repo: https://github.com/user/py-cli-starter
 
 go:
   web_app:

@@ -1,6 +1,10 @@
 package ui
 
 import (
+	"log"
+
+	"github.com/chann44/prme/internals"
+	"github.com/chann44/prme/templates"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -18,7 +22,7 @@ type modal struct {
 	state           state
 	languages       []string
 	appTypes        []string
-	stacks          []string
+	templates       []templates.Starter
 	languageCursor  int
 	appTypeCursor   int
 	stackCursor     int
@@ -29,30 +33,17 @@ type modal struct {
 }
 
 func IntialModal() modal {
+	languages := internals.GetLanguages()
+	appTypes := internals.GetAppTypes()
+	templates, err := internals.GetTemplates(languages[0], appTypes[0])
+	if err != nil {
+		log.Fatalf("Error getting templates: %v", err)
+	}
 	return modal{
-		state: seleLanguage,
-		languages: []string{
-			"Go",
-			"Python",
-			"JavaScript",
-			"Rust",
-			"TypeScript",
-			"Java",
-		},
-		appTypes: []string{
-			"Web Application",
-			"CLI Tool",
-			"API Service",
-			"Desktop App",
-			"Mobile App",
-		},
-		stacks: []string{
-			"Full Stack",
-			"Frontend Only",
-			"Backend Only",
-			"Serverless",
-			"Microservices",
-		},
+		state:          seleLanguage,
+		languages:      languages,
+		appTypes:       appTypes,
+		templates:      templates,
 		languageCursor: 0,
 		appTypeCursor:  0,
 		stackCursor:    0,
@@ -95,7 +86,7 @@ func (m modal) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.appTypeCursor++
 				}
 			case selectStack:
-				if m.stackCursor < len(m.stacks)-1 {
+				if m.stackCursor < len(m.templates)-1 {
 					m.stackCursor++
 				}
 			}
@@ -108,7 +99,7 @@ func (m modal) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.selectedAppType = m.appTypes[m.appTypeCursor]
 				m.state = selectStack
 			case selectStack:
-				m.selectedStack = m.stacks[m.stackCursor]
+				m.selectedStack = m.templates[m.stackCursor].Name
 				m.state = confirm
 			case confirm:
 				m.state = done

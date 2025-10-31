@@ -103,8 +103,13 @@ func (m modal) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.state = confirm
 			case confirm:
 				m.state = done
-				// Call your function here with all selections
 			case done:
+				err := internals.CloneRepo(m.templates[m.stackCursor].Repo, "./prme")
+				if err != nil {
+					log.Fatal(err)
+					m.quitting = true
+					return m, tea.Quit
+				}
 				m.quitting = true
 				return m, tea.Quit
 			}

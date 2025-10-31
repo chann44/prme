@@ -27,7 +27,7 @@ python:
 go:
   web_app:
     - name: Fiber + GORM
-      repo: https://github.com/user/go-fiber-starter
+      repo: https://github.com/chann44/prme
   cli:
     - name: Cobra CLI
       repo: https://github.com/user/go-cobra-starter

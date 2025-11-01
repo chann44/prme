@@ -35,10 +35,26 @@ Built with [Bubble Tea](https://github.com/charmbracelet/bubbletea) for a deligh
 
 ## 🚀 Installation
 
-### Homebrew (macOS/Linux) - Recommended
+### Quick Install (macOS/Linux) - Recommended
+
+Install with a single command:
 
 ```bash
-brew tap chann44/prime
+curl -fsSL https://raw.githubusercontent.com/chann44/homebrew-prme/main/install.sh | sh
+```
+
+Or if you prefer to review the script first:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/chann44/homebrew-prme/main/install.sh -o install.sh
+chmod +x install.sh
+./install.sh
+```
+
+### Homebrew (macOS/Linux)
+
+```bash
+brew tap chann44/prme
 brew install prime
 ```
 

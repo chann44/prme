@@ -24,7 +24,7 @@ func GetLanguages() []string {
 }
 
 func GetAppTypes() []string {
-	return []string{"web_app", "cli"}
+	return []string{"web_app", "cli", "backend", "mobile", "browser_extension", "static", "config"}
 }
 
 func GetTemplates(lang string, appType string) ([]templates.Starter, error) {
@@ -44,6 +44,16 @@ func GetTemplates(lang string, appType string) ([]templates.Starter, error) {
 		return langConfig.WebApp, nil
 	case "cli":
 		return langConfig.CLI, nil
+	case "backend":
+		return langConfig.Backend, nil
+	case "mobile":
+		return langConfig.Mobile, nil
+	case "browser_extension":
+		return langConfig.BrowserExtension, nil
+	case "static":
+		return langConfig.Static, nil
+	case "config":
+		return langConfig.Config, nil
 	default:
 		return nil, fmt.Errorf("app type '%s' not found", appType)
 	}

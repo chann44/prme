@@ -55,10 +55,15 @@ func (m modal) View() string {
 	var s strings.Builder
 
 	switch m.state {
+	case projectName:
+		s.WriteString(titleStyle.Render("📝 Enter Project Name"))
+		s.WriteString("\n\n")
+		s.WriteString(m.textInput.View())
+		s.WriteString("\n\n")
+		s.WriteString(helpStyle.Render("enter: continue • esc: quit"))
 	case seleLanguage:
 		s.WriteString(titleStyle.Render("🚀 Select a Programming Language"))
 		s.WriteString("\n\n")
-
 		for i, lang := range m.languages {
 			cursor := " "
 			if i == m.languageCursor {
@@ -104,6 +109,15 @@ func (m modal) View() string {
 			if i == m.stackCursor {
 				cursor = "▸"
 				s.WriteString(cursor + " " + highlightStyle.Render(stack.Name) + "\n")
+				// Show description for the currently highlighted template
+				if stack.Description != "" {
+					descStyle := lipgloss.NewStyle().
+						Foreground(lipgloss.Color("#888888")).
+						Italic(true).
+						Padding(0, 0, 0, 3).
+						Width(80)
+					s.WriteString(descStyle.Render("  "+stack.Description) + "\n")
+				}
 			} else {
 				s.WriteString(cursor + " " + normalStyle.Render(stack.Name) + "\n")
 			}

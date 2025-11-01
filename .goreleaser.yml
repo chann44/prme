@@ -112,7 +112,7 @@ brews:
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     
     # Skip if you don't have the tap repo yet
-    skip_upload: true
+    skip_upload: auto
     
     # Formula metadata
     homepage: https://github.com/chann44/prme

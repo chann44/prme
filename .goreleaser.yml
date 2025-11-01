@@ -107,7 +107,7 @@ brews:
     # Push to your homebrew tap repository
     repository:
       owner: chann44
-      name: homebrew-prime
+      name: homebrew-prme
       branch: main
       token: "{{ .Env.GITHUB_TOKEN }}"
     

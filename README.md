@@ -35,6 +35,33 @@ Built with [Bubble Tea](https://github.com/charmbracelet/bubbletea) for a deligh
 
 ## 🚀 Installation
 
+### Homebrew (macOS/Linux) - Recommended
+
+```bash
+brew tap chann44/prime
+brew install prime
+```
+
+### Download Pre-built Binaries
+
+Download the latest binary for your platform from the [releases page](https://github.com/chann44/prme/releases):
+
+- **macOS (Apple Silicon)**: `prime_*_Darwin_arm64.tar.gz`
+- **macOS (Intel)**: `prime_*_Darwin_x86_64.tar.gz`
+- **Linux (64-bit)**: `prime_*_Linux_x86_64.tar.gz`
+- **Windows (64-bit)**: `prime_*_Windows_x86_64.zip`
+
+Extract and move to your PATH:
+
+```bash
+# macOS/Linux
+tar -xzf prime_*.tar.gz
+sudo mv prime /usr/local/bin/
+
+# Windows
+# Extract the zip and add prime.exe to your PATH
+```
+
 ### Install from source
 
 Make sure you have [Go 1.21+](https://golang.org/dl/) installed.

@@ -1,0 +1,170 @@
+# .goreleaser.yml
+# GoReleaser configuration for prime CLI
+
+version: 2
+
+before:
+  hooks:
+    # Tidy up dependencies before building
+    - go mod tidy
+    - go mod download
+
+builds:
+  - id: prime
+    main: ./cmd/main.go
+    binary: prime
+    
+    env:
+      - CGO_ENABLED=0
+    
+    # Build for multiple platforms
+    goos:
+      - linux
+      - darwin
+      - windows
+    
+    goarch:
+      - amd64
+      - arm64
+      - arm
+    
+    # Ignore unsupported combinations
+    ignore:
+      - goos: windows
+        goarch: arm
+      - goos: windows
+        goarch: arm64
+    
+    # Build flags for smaller binaries
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+
+# Archive settings
+archives:
+  - id: prime-archive
+    format: tar.gz
+    
+    # Archive name template
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    
+    # Use zip for Windows
+    format_overrides:
+      - goos: windows
+        format: zip
+    
+    # Files to include in the archive
+    files:
+      - README.md
+      - LICENSE*
+      - templates/**/*
+
+# Generate checksums for all artifacts
+checksum:
+  name_template: 'checksums.txt'
+  algorithm: sha256
+
+# Generate a changelog from git commits
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^ci:'
+      - '^chore:'
+      - '^style:'
+      - 'README'
+      - 'Merge pull request'
+      - 'Merge branch'
+  groups:
+    - title: Features
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: 'Bug fixes'
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: 'Enhancements'
+      regexp: '^.*?enhancement(\([[:word:]]+\))??!?:.+$'
+      order: 2
+    - title: Others
+      order: 999
+
+# Homebrew tap configuration
+brews:
+  - name: prime
+    
+    # Push to your homebrew tap repository
+    repository:
+      owner: chann44
+      name: homebrew-prime
+      branch: main
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    
+    # Skip if you don't have the tap repo yet
+    skip_upload: auto
+    
+    # Formula metadata
+    homepage: https://github.com/chann44/prme
+    description: "A lightning-fast CLI tool to bootstrap your next project with curated starter templates"
+    license: MIT
+    
+    # Installation
+    install: |
+      bin.install "prime"
+      # Include templates directory if needed
+      prefix.install "templates"
+    
+    # Test installation
+    test: |
+      system "#{bin}/prime", "--version"
+    
+    # Post-install message
+    caveats: |
+      🚀 Thanks for installing prime!
+      
+      Run 'prime' to start bootstrapping your next project.
+      
+      For more information, visit: https://github.com/chann44/prme
+
+# Release settings
+release:
+  github:
+    owner: chann44
+    name: prme
+  
+  # Draft release before publishing
+  draft: false
+  
+  # Mark as prerelease if version contains pre-release suffix
+  prerelease: auto
+  
+  # Release name template
+  name_template: "{{.ProjectName}} v{{.Version}}"
+  
+  # Footer for release notes
+  footer: |
+    ## Installation
+    
+    ### Homebrew (macOS/Linux)
+    ```bash
+    brew tap chann44/prime
+    brew install prime
+    ```
+    
+    ### Direct Download
+    Download the appropriate binary for your platform from the assets below.
+    
+    ---
+    **Full Changelog**: https://github.com/chann44/prme/compare/{{ .PreviousTag }}...{{ .Tag }}
+

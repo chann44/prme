@@ -109,7 +109,7 @@ brews:
       owner: chann44
       name: homebrew-prme
       branch: main
-      token: "{{ .Env.GITHUB_TOKEN }}"
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     
     # Skip if you don't have the tap repo yet
     skip_upload: auto
